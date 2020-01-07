@@ -49,11 +49,13 @@
      <p class="card-text"><small class="text-muted">Perfil creado el  {{ $usuario->created_at->format('Y-m-d') }} </small></p>
     <ul class="list-group hover">
 
-    <li class="list-group-item">Nivel : {{$usuario->nameNivel}}</li>      
+    <li class="list-group-item">Nivel : {{$usuario->nameNivel}}</li> 
+    <li class="list-group-item">Seccion : {{$usuario->seccion}}</li>       
     <li class="list-group-item">Edad : {{$usuario->edad}}</li> 
     <li class="list-group-item">Sexo : {{$usuario->sexo}}</li>
-    <li class="list-group-item">Dui Responsable : {{$usuario->dui_tutor}}</li>
-    <li class="list-group-item">Nie : {{$usuario->nie}}</li>      
+      <li class="list-group-item">Nie : {{$usuario->nie}}</li>
+    <li class="list-group-item">Codigo de notas : {{$usuario->codigo}}</li>
+    <li class="list-group-item">Clave  : {{$usuario->pass}}</li>         
     <li class="list-group-item">Tel: {{$usuario->tel}}</li>
     <li class="list-group-item">Tel Responsable: {{$usuario->tel}}</li>
     <li class="list-group-item">Email: {{$usuario->email}}</li>

@@ -2,8 +2,14 @@
 
 
 @section('container')
-@foreach($usuario as $usuario)
+
 <div class="card ">
+                  <ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+</ul>
+          
   <form action="{{url('updatedPerfil',Crypt::encrypt($usu->id))}}" class="" method="post" enctype="multipart/form-data">
   @csrf
        <div class="form-group profile-img">
@@ -34,8 +40,8 @@
       <input type="text" class="form-control"  name="edad" value="{{$usuario->edad}}" >
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Dui Responsable</label>
-      <input type="text" name="dui" class="form-control"  value="{{$usuario->dui_tutor}}" >
+      <label for="inputPassword4">Codigo Personal</label>
+      <input type="text" name="codigo" class="form-control"  value="{{$usuario->codigo}}" >
     </div>
   </div>
   <div class="form-row">
@@ -64,17 +70,17 @@
       <label for="inputCity">Nie</label>
       <input type="text" class="form-control"  name="nie" value="{{$usuario->nie}}">
     </div>
-
+     
         <div class="form-group col-md-6">
       <label for="inputState">Rol</label>
-            <select class="form-control" name="rol">
-            @foreach ($roles as $key => $value)
-            @if ($usuario->hasRole($value))
-            <option value="{{ $value }}" selected>{{ $value }}</option>
-            @else
-            <option value="{{ $value }}">{{ $value }}</option>
-            @endif
-            @endforeach
+            <select class="form-control" name="rol" focus required="">
+              @foreach ($roles as $key => $value)
+                        @if ($usu->hasRole($value))
+                            <option value="{{ $value }}" selected>{{ $value }}</option>
+                        @else
+                            <option value="{{ $value }}">{{ $value }}</option>
+                        @endif
+                    @endforeach
 
             </select>
     </div>
@@ -83,8 +89,8 @@
   </div>
     <div class="form-row">
 
-    <div class="form-group col-md-6">
-      <label for="inputState">Nivel Academico <small class="text-danger">" actualmente {{$usuario->nameNivel}} "</small> </label>
+    <div class="form-group col-md-4">
+      <label for="inputState">Nivel Academico <small class="text-danger">"actualmente {{$usuario->nameNivel}} "</small> </label>
       <select  name="nivel" class="form-control">
         <option value="{{$usuario->id}}" >Actual {{$usuario->nameNivel}}</option>
         @foreach($nivel as $nivel)
@@ -92,8 +98,17 @@
         @endforeach
       </select>
     </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Seccion  <small class="text-danger">" actualmente {{$usuario->seccion}} "</small> </label>
+      <select  name="seccion" class="form-control">
+        <option value="{{$usuario->seccion}}" >Actual {{$usuario->seccion}}</option>
+        @foreach($secciones as $secciones)
+        <option value="{{$secciones->seccion}}" >{{$secciones->seccion}}</option>
+        @endforeach
+      </select>
+    </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="inputState">Sexo actual <small class="text-danger">" actualmente {{$usuario->sexo}} "</small> </label>
       <select  name="sexo" class="form-control">
         <option value="{{$usuario->sexo}}" >Actual {{$usuario->sexo}}</option>
@@ -105,6 +120,7 @@
 
 
   </div>
+
   <div class="form-group">
     <label for="inputAddress">Direccion</label>
     
@@ -199,7 +215,7 @@
 </form>
 </div>
 
-  @endforeach
+
 
 
 

@@ -61,7 +61,7 @@
     <li class="list-group-item">Nivel : {{$usuario->nameNivel}}</li>      
     <li class="list-group-item">Edad : {{$usuario->edad}}</li> 
     <li class="list-group-item">Sexo : {{$usuario->sexo}}</li>
-    <li class="list-group-item">Dui Responsable : {{$usuario->dui_tutor}}</li>
+    
     <li class="list-group-item">Nie : {{$usuario->nie}}</li>      
     <li class="list-group-item">Tel: {{$usuario->tel}}</li>
     <li class="list-group-item">Tel Responsable: {{$usuario->tel}}</li>

@@ -13,7 +13,7 @@ class ReporteController extends Controller
 	public function index(){
     	
    $reportes=Reporte::join('users','reportes.user_id','=','users.id')
-    ->select('reportes.id','users.name','users.pass','users.email','users.tel','users.dui_tutor','users.direccion','users.foto','users.apellidos','users.nie','users.edad','users.datos_salud','reportes.reporte','reportes.created_at','reportes.user_id')
+    ->select('reportes.id','users.name','users.pass','users.email','users.tel','users.codigo','users.direccion','users.foto','users.apellidos','users.nie','users.edad','users.datos_salud','reportes.reporte','reportes.created_at','reportes.user_id')
     ->get(); 	
     return view('panel.reporte.index',compact('reportes'));
     }

@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('nivels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('nameNivel');
+            $table->text('estado');
             $table->timestamps();
         });
 
@@ -23,10 +24,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->text('seccion')->nullable();
+            $table->text('estatus')->default(0);
+            $table->text('ciclo')->default(0);
             $table->string('apellidos');
             $table->unsignedBigInteger('nivel_id')->nullable();
             $table->foreign('nivel_id')->references('id')->on('nivels');
-            $table->text('dui_tutor');
+            $table->text('codigo')->nullable();
             $table->text('nie')->nullable();
             $table->text('sexo')->nullable();
             $table->text('foto')->nullable();

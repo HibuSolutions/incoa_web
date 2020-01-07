@@ -35,9 +35,7 @@
                   	<td>{{$reporte->name}}</td>
                   	<td>{{$reporte->nie}}</td>
                   	<td scope="row">
-  <form action="{{ url('deleteReporte', $reporte->id) }}" method="post" >
-  @csrf()
-  @method('DELETE')
+
 <button type="button" class="btn-sm btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$reporte->id}}">
   <i class="far fa-eye"></i>
 </button>
@@ -66,8 +64,40 @@
   </div>
 </div>
                   			 <a class="btn-sm btn btn-info" href="{{url('verReporte',Crypt::encrypt($reporte->user_id))}}"><i class="fas fa-search"></i></a>
-                  			<button type="submit" class="btn-sm btn btn-danger"onClick="confirm('Seguro quieres eliminarlo?')"><i class="far fa-trash-alt" ></i></button>
-                  		</form>
+                  		
+
+
+
+
+
+  <button type="button" class="btn-sm btn btn-danger ml-1" data-toggle="modal" data-target="#exampleModa{{$reporte->id}}1">
+  <i class="fas fa-trash-alt"></i>
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModa{{$reporte->id}}1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Eliminar Reporte</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+  <form action="{{ url('deleteReporte', $reporte->id) }}" method="post" enctype="multipart/form-data">
+  @csrf()
+  @method('DELETE')
+
+  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+  </form>
+  </div>
+
+  </div>
+
+  </div>
+  </div>
                   	</td>
               
 

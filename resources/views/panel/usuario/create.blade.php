@@ -69,16 +69,7 @@
                             </div>
                         </div>
 
-                                  <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Dui Tutor</label>
-
-
-                            <div class="col-md-6 ">
-                                <input  type="number" class="form-control " name="dui"  required="" placeholder="ingresa el respectivo dui de tu tutor">
-
-
-                            </div>
-                        </div>
+                         
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nivel Academico</label>
@@ -93,6 +84,19 @@
 
                              
                             </div>
+                        </div>
+
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Seccion</label>
+                            <div class="col-md-6">
+                                    <select class="custom-select" name="seccion">
+                                @foreach($secciones as $seccion)
+                                <option value="{{$seccion->seccion}}">{{$seccion->seccion}}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        
                         </div>
                            <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Rol Academico</label>

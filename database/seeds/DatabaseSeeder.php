@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Categoria;
 use App\User;
 use App\Nivel;
+use App\Seccione;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 class DatabaseSeeder extends Seeder
@@ -16,13 +17,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $bachillerT= Nivel::create([
-            'nameNivel'=>'TecnicoComercial'
+            'nameNivel'=>'Tecnico Comercial',
+            'estado'=>'1',
+           
         ]);
 
          $bachillerG= Nivel::create([
-            'nameNivel'=>'BachilleratoGeneral'
+            'nameNivel'=>'Bachillerato General',
+            'estado'=>'1',
+         
         ]);
 
+
+        $a=Seccione::create([
+            'seccion'=>'a',
+            'estado'=>'1'
+        ]); 
+
+        $b=Seccione::create([
+            'seccion'=>'b',
+            'estado'=>'1'
+        ]); 
 
 
 
@@ -93,14 +108,70 @@ class DatabaseSeeder extends Seeder
             'nivel_id'=>'1',
             'email' => 'incoaweb@gmail.com',
             'edad'=>'20',
-            'dui_tutor'=>'7845129',
+            
             'password' => Hash::make(2020),
             'pass' =>'2020',
              
             
         ]);
 
-            $user->assignRole('administrador');
+        $user->assignRole('administrador');
+
+            $estudiante = User::create([
+            'name' => 'Administrador',
+            'apellidos'=>'Incoa',
+            'sexo'=>'masculino',
+            'nie'=>'2345896',
+            'nivel_id'=>'1',
+            'seccion'=>'a',
+            'email' => 'estudiante@gmail.com',
+            'edad'=>'20',
+            
+            'password' => Hash::make(2020),
+            'pass' =>'2020',
+             
+            
+        ]);
+
+            $estudiante->assignRole('estudiante');
+
+
+        $estudiante2 = User::create([
+            'name' => 'Administrador',
+            'apellidos'=>'Incoa',
+            'sexo'=>'masculino',
+            'nie'=>'8945563',
+            'nivel_id'=>'1',
+            'seccion'=>'b',
+            'email' => 'estudiante2@gmail.com',
+            'edad'=>'20',
+         
+            'password' => Hash::make(2020),
+            'pass' =>'2020',
+             
+            
+        ]);
+
+            $estudiante2->assignRole('estudiante');
+
+
+        $estudiante3 = User::create([
+            'name' => 'Administrador',
+            'apellidos'=>'Incoa',
+            'sexo'=>'masculino',
+            'nie'=>'4551515',
+            'nivel_id'=>'1',
+            'seccion'=>'a',
+            'email' => 'estudiante3@gmail.com',
+            'edad'=>'20',
+            
+            'password' => Hash::make(2020),
+            'pass' =>'2020',
+             
+            
+        ]);
+
+            $estudiante3->assignRole('estudiante');        
 
         
  

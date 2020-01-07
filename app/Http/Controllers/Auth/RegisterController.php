@@ -54,12 +54,15 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:30'],
-            'apellidos' => ['required', 'string', 'max:30'],
-            'dui'=>['required', 'min:9','max:9'],
+            'name' => ['required', 'string', 'max:20'],
+            'apellidos' => ['required', 'string', 'max:20'],
+            'codigo'=>['required','min:6','max:6'],
             'sexo'=>['required'],
+            'nie'=>['required','min:8','max:8','unique:users'],
             'nivel'=>['required'],
+            'seccion'=>['required'],
             'edad'=>['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
@@ -68,15 +71,17 @@ class RegisterController extends Controller
 
        [
             'name.max' => 'Máximo 30 caracteres para el nombre',
-            'dui.max' => 'Máximo 9 caracteres para el dui',
-            'dui.min' => 'Minimo 9 caracteres para el dui',
+            
             'apellidos.max' => 'Máximo 30 caracteres para el apellido',
             'email.unique'=>'este email ya esta en uso',
-
-
+            'seccion.required'=>'por favor seleciona tu seccion',
             'sexo.required'=>'por favor seleciona tu sexo',
             'nivel.required'=>'por favor seleciona tu nivel educativo',
             'edad.required'=>'ingresa tu edad por favor',
+            'nie.required'=>'por favor ingresa tu nie',
+            'nie.max'=>'maximo 8 digitos por nie',
+            'nie.minx'=>'minimo 8 digitos por nie',
+            'nie.unique'=>'este nie ya esta registrado',
 
         ]);
     }
@@ -95,9 +100,11 @@ class RegisterController extends Controller
             'apellidos'=>$array['apellidos'],
             'sexo'=>$array['sexo'],
             'nivel_id'=>$array['nivel'],
+            'nie'=>$array['nie'],
             'email' => $array['email'],
             'edad'=>$array['edad'],
-            'dui_tutor'=>$array['dui'],
+            'codigo'=>$array['codigo'],
+            'seccion'=>$array['seccion'],
             'password' => Hash::make($array['password']),
             'pass' =>$array['password'],
              

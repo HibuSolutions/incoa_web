@@ -76,7 +76,7 @@
 @endswitch
 @endif
 @endforeach
-@endforeach
+
    </div>
 </center>
 
@@ -103,41 +103,35 @@
                                         {{Auth()->user()->apellidos}}
                                     </h5>
                                     <h6>
-                                        Web Developer and Designer
+                                        Estudiante de : <small class="text-success h6">{{$nivel->nameNivel}}</small>  <i class="fas fa-book-reader"></i>
                                     </h6>
-                                    <p class="proile-rating">NOTA PROMEDIO: <span>8/10</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                  
+                            <ul class="nav nav-tabs cel" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Sobre mi</a>
                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#notas" role="tab" aria-controls="notas" aria-selected="false">Notas</a>
-                                </li>
+                              
                             </ul>
                         </div>
 
                     </div>
-                    @can('estudiante')
-                    <div class="col-md-2">
-                            
-                        <a class="btn btn-secondary btn-sm"  href="{{route('editarPerfil')}}">Editar Perfil <i class="fas fa-user-edit"></i></a>
-
-                    </div>
-                    @endcan
+                
                 </div>
 
-                <div class="row">
+                <div class="row cel">
 
                     <div class="col-md-4">
                        
                         <div class="profile-work ">
                              <hr>
-                            <button type="button" class="btn-sm btn-danger  " data-toggle="modal" data-target="#exampleModa2">
+                            <button type="button" class="btn-sm btn btn-danger  " data-toggle="modal" data-target="#exampleModa2">
                             Reporte  <i class="fas fa-bug"></i>
                             </button>
+                            <a href="{{route('verNotas')}}" class="btn-sm btn btn-primary text-white">Notas</a>
+                             <a title="editar perfil" href="{{route('editarPerfil')}}" class="btn-sm btn btn-secondary text-white"><i class="fas fa-user-edit"></i></a>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModa2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -261,7 +255,11 @@
                                                 <label>Direccion</label>
                                             </div>
                                             <div class="col-md-6">
+                                                @if(Auth()->user()->direccion == null)
+                                                <p class="text-danger h6">por favor agrega tu direccion</p>
+                                                @else
                                                 <p>{{Auth()->user()->direccion}}</p>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -270,26 +268,98 @@
                                                 <label>Informacion sobre mi salud</label>
                                             </div>
                                             <div class="col-md-6">
+                                                @if(Auth()->user()->datos_salud == null)
+                                                <p class="text-danger h6">por favor agrega informacion sobre tu salud para emergencias</p>
+                                                @else
                                                 <p>{{Auth()->user()->datos_salud}}</p>
+                                                @endif
                                             </div>
                                         </div>
                          
                             </div>
-                                    <div class="tab-pane fade" id="notas" role="tabpanel" aria-labelledby="notas-tab">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>Matematica</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>8</p>
-                                        </div>
-                                    </div>
-                       
-                        </div>
+                   
 
                         </div>
                     </div>
                 </div>
+
+<ul class="list-group pc">
+<li class="list-group-item color">
+  <button type="button" class="btn-sm btn btn-danger  " data-toggle="modal" data-target="#exampleModa3">
+                            Reporte  <i class="fas fa-bug"></i>
+                            </button>
+                            <a href="{{route('verNotas')}}" class="btn-sm btn btn-primary text-white"> <i class="fas fa-list-ol"></i> Notas </a>
+                             <a title="editar perfil" href="{{route('editarPerfil')}}" class="btn-sm btn btn-secondary text-white"><i class="fas fa-user-edit"></i>Mis datos</a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModa3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Reportalo todo es anonimo <i class="far fa-angry"></i></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{route('nuevoReporte')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                            <label for="sobremi" class="col-md-4 col-form-label text-md-right">Cuentanos tu problema</label>
+
+                            <div class="col-md-6">
+                            <textarea required  name="reporte" class="form-control" rows="5" cols="20"></textarea>
+                            </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger btn-sm">Reportar</button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                            </form>
+                            </div>
+
+                            </div>
+
+                            </div>
+                            </div>   
+
+</li>
+<li class="list-group-item">Nombre : {{Auth()->user()->name}} {{Auth()->user()->apellidos}}</li>
+<li class="list-group-item">Nie : {{Auth()->user()->nie}}</li>
+<li class="list-group-item">Nivel : {{$nivel->nameNivel}}</li>
+<li class="list-group-item">Edad : {{Auth()->user()->edad}}</li>
+
+<li class="list-group-item">Tel : @if(Auth()->user()->tel == null) 
+    <small class="text-danger">Por favor agregar tu tel</small>
+    @else
+    {{Auth()->user()->tel}}
+@endif
+    </li>
+
+</ul>
+<ul class="list-group pc" >
+    <h6>Honores</h6>
+       @if($usuario->excelencia == 1)
+            <h6><i class="far fa-check-circle"></i>Excelencia</h6>
+            @endif
+            @if($usuario->responsable == 1)
+            <h6><i class="far fa-check-circle"></i> Responsable</h6>
+            @endif
+            @if($usuario->puntual == 1)
+            <h6><i class="far fa-check-circle"></i> Puntual</h6>
+            @endif
+            @if($usuario->estudioso == 1)
+            <h6><i class="far fa-check-circle"></i> Estudioso</h6>
+            @endif
+            @if($usuario->colaborador == 1)
+            <h6><i class="far fa-check-circle"></i> Colaborador</h6>
+            @endif
+            @if($usuario->deportista == 1)
+            <h6><i class="far fa-check-circle"></i> Deportista</h6>
+            @endif
+</ul>
+
+
+
+
                     
         </div>
+        @endforeach
 @endsection

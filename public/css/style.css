@@ -104,3 +104,35 @@
     font-weight: 600;
     color: #0062cc;
 }
+
+
+
+@media screen and (max-width:500px) {
+  /* reglas CSS  para que desaparesca en  300 pc*/
+
+  .cel{
+    display: none;
+  }
+
+  
+
+  #barraSuperior a:hover{
+    background-color: #F7DC6F;
+    border-radius: 2px;
+    
+  }
+
+}
+
+@media screen and (min-width:500px) {
+    /* reglas CSS  para que desaparesca en  300 pc*/
+   
+   .pc{
+        display: none;
+    } 
+}
+
+
+
+
+

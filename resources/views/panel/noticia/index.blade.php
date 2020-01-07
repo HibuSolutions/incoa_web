@@ -37,13 +37,7 @@
                   <td>{{$noticia->titulo}}</td>
                    <td>{{ date('d-M-y', strtotime($noticia->created_at)) }}</td>
                    <td>
-                   	<form action="{{route('noticia.destroy',$noticia->id)}}" method="post">
-						@csrf()
-						@method('DELETE')
           
-		<button type="button" class="btn-sm btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$noticia->id}}">
-		<i class="far fa-eye"></i>
-		</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal{{$noticia->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,8 +70,45 @@
 </div> 
         <a class="btn-sm btn btn-info" href="{{route('noticia.show',Crypt::encrypt($noticia->user_id))}}"><i class="fas fa-user"></i></a>
         <a class="btn-sm btn btn-primary" href="{{route('noticia.edit',Crypt::encrypt($noticia->id))}}"><i class="far fa-edit"></i></a>
-                   		<button class="btn-sm btn btn-danger" onClick="confirm('Seguro quieres eliminarlo?')"><i class="far fa-trash-alt"></i></button>
-                   	</form>
+                   	
+
+
+        <button type="button" class="btn-sm btn btn-danger ml-1" data-toggle="modal" data-target="#exampleModa{{$noticia->id}}1">
+        <i class="fas fa-trash-alt"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModa{{$noticia->id}}1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Noticia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <form action="{{route('noticia.destroy',$noticia->id)}}" method="post" enctype="multipart/form-data">
+        @csrf()
+        @method('DELETE')
+
+        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+        </form>
+        </div>
+
+        </div>
+
+        </div>
+        </div>
+
+
+
+
+
+
+
+
                    </td>
                 
      </tr>  

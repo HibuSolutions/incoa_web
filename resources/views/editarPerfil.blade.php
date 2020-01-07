@@ -18,20 +18,21 @@
 
 
               <input type="file" class="btn btn-info"  name="foto" class="" id="subirfoto">
+              <a href="{{route('deleteMy')}}" class="btn btn-danger btn-sm mt-3">Eliminar Cuenta</a>
               </div>  
 
 
               <div class="form-group  ">
-              <label>Nombre</label>
+              <label>Nombres</label>
               <input type="text" class="form-control" name="nombre" value="{{Auth::user()->name}}">               
               </div> 
               <div class="form-group  ">
-              <label>Apellido</label>
+              <label>Apellidos</label>
               <input type="text" class="form-control" name="apellido" value="{{Auth::user()->apellidos}}">               
               </div>
               <div class="form-group  ">
-              <label>Dui Tutor</label>
-              <input type="text" class="form-control" name="dui" value="{{Auth::user()->dui_tutor}}">               
+              <label>Codigo Personal </label>
+              <input type="text" class="form-control" name="codigo" value="{{Auth::user()->codigo}}">               
               </div>
                <div class="form-group  ">
               <label>Email</label>

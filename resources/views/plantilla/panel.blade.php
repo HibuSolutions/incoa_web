@@ -90,18 +90,21 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
         <a class="dropdown-item" href="{{route('usuarios')}}"><i class="fas fa-users"></i> Usuarios</a>
+        <a class="dropdown-item" href="{{route('estudiantes')}}"><i class="fas fa-user-graduate"></i> Estudiantes</a>
+
         <a class="dropdown-item" href="{{url('noticia')}}"><i class="far fa-newspaper"></i> Noticias</a>
         <a class="dropdown-item" href="{{url('aviso')}}"><i class="fas fa-flag"></i> Avisos</a>
+        @role('administrador')
         <a class="dropdown-item" href="{{route('reporte')}}"><i class="fas fa-bug"></i> Reportes</a>
-        <a class="dropdown-item" href="login.html"><i class="fas fa-book"></i> Biblioteca</a>
-        <a class="dropdown-item" href="login.html"><i class="fas fa-box-open"></i> Recursos</a>
-        <a class="dropdown-item" href="login.html"><i class="fas fa-info-circle"></i> Informacion</a>
+        @endrole
+        <a class="dropdown-item" href="{{url('comentarios')}}"><i class="far fa-comment-dots"></i> Comentarios</a>
+        <a class="dropdown-item" href="{{url('historial')}}"><i class="fas fa-database"></i> Documentacion</a>
+        @role('administrador')
+        <a class="dropdown-item" href="{{route('seccion')}}"><i class="fab fa-audible"></i> Secciones/Niveles</a>
+        @endrole
+        
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Desarrolladores</span></a>
-      </li>
+    
 
     </ul>
 

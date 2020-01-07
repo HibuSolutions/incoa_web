@@ -43,7 +43,24 @@ class NoticiaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   if($request->hasFile('foto')){
+    {  
+
+        $this->validate($request,[
+            'noticia' => ['required', 'string',],
+            'titulo'=> ['required','max:255'],
+
+            
+
+        ],
+
+        [
+            'titulo.required' => 'por favor ingresa el titulo',
+            'noticia.required'=>'por favor ingresa la noticia',
+          
+
+        ]);
+
+     if($request->hasFile('foto')){
         $rutaImagen=$request->file('foto')->store('noticia');
         $noticia=new Noticia;
         $noticia->noticia=$request->noticia;
@@ -100,6 +117,22 @@ class NoticiaController extends Controller
      */
     public function update(Request $request,$id)
     {
+           $this->validate($request,[
+            'noticia' => ['required', 'string',],
+            'titulo'=> ['required','max:255'],
+
+            
+
+        ],
+
+        [
+            'titulo.required' => 'por favor ingresa el titulo',
+            'noticia.required'=>'por favor ingresa la noticia',
+          
+
+        ]);
+
+        
         if($request->hasFile('foto')){
         $borrar=Noticia::findOrFail($id);
         Storage::disk('local')->delete('app',$borrar->foto);   

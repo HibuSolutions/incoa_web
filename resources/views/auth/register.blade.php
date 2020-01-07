@@ -49,7 +49,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Edad</label>
 
                             <div class="col-md-6">
-                                <input id="edad" type="number" class="form-control " name="edad" value="" required="">
+                                <input id="edad" type="number" class="form-control " name="edad" value="" required="" min="0" max="25">
 
                              
                             </div>
@@ -68,17 +68,31 @@
                             </div>
                         </div>
 
-                                  <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Dui Tutor</label>
+
+                           
+                            <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nie</label>
 
 
                             <div class="col-md-6 ">
-                                <input  type="number" class="form-control " name="dui"  required="" placeholder="ingresa el respectivo dui de tu tutor">
+                                <input  type="number" class="form-control " name="nie"  required="" placeholder="ingresa tu nie">
 
 
                             </div>
                      
                         </div>
+                          <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Codigo Notas</label>
+
+
+                            <div class="col-md-6 ">
+                                <input  type="text" class="form-control " name="codigo"  required="" placeholder="ingresa tu codigo secreto personal">
+
+
+                            </div>
+                     
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nivel Academico</label>
@@ -95,6 +109,19 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Seccion</label>
+                            <div class="col-md-6">
+                                    <select class="custom-select" name="seccion">
+                                @foreach($secciones as $seccion)
+                                <option value="{{$seccion->seccion}}">{{$seccion->seccion}}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        
+                        </div>
+          
 
              
                         <div class="form-group row">
@@ -114,7 +141,10 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6" >
+                                                         
+                                <button class="btn-sm btn-primary" type="button" onclick="mostrarContrasena()"><i class="far fa-eye"></i></button>
+
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -122,7 +152,18 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                             </div>
+                            <script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
                         </div>
 
                         <div class="form-group row">
